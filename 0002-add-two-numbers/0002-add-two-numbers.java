@@ -38,19 +38,3 @@ class Solution {
         return head.next;
     }
 }
-
-/*
-[2,4,6]
-       p
- 
-[5,6,4]
-       q
- 
-ans 
- [7, 0]
- 
- 
- curr_val = (3+4) % 10 + carry(1) = 7 + 1 = 8
- 
- carry = (3+4) / 10 = 1
-*/
