@@ -26,7 +26,10 @@ public class Solution {
         */
         
         // Solution 1:  TC = O(N), SC = O(1) 
-        ListNode slow = head, fast = head;
+        
+        ListNode dummy = new ListNode(); 
+        dummy.next = head;
+        ListNode slow = dummy, fast = dummy;
         
         while(fast != null && fast.next != null){
             slow = slow.next;
