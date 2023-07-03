@@ -55,7 +55,6 @@ class Solution {
         while(interval < lists.length){
             for(int i=0; i + interval <lists.length; i+= 2 * interval){
                 lists[i] = mergeTwoLists(lists[i], lists[i+interval]);
-                System.out.println(i);
             }
             interval *= 2;
         }
