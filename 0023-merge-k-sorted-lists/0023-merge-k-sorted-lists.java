@@ -18,11 +18,13 @@ class Solution {
         ListNode res = new ListNode();
         ListNode dummy = res;
         
-        for(ListNode list: lists){
+        // TC: O(logK) ==> K = num of lists
+        for(ListNode list: lists){ 
             if(list != null)
                 pq.add(list);
         }
         
+        // TC: O(NlogK) ==> N = total num of nodes
         while(pq.size() != 0){
             ListNode curr = pq.poll();
             res.next = curr;
