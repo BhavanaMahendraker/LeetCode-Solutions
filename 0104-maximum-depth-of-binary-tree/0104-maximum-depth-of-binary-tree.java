@@ -15,15 +15,17 @@
  */
 class Solution {
     public int maxDepth(TreeNode root) {
-        /*
-        // Recursive
+        
+        // Recursive Solution
+        // TC: O(N), SC: O(N)
         if(root == null)
             return 0;
         
         return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
-        */
         
-        // BFS
+        
+        /*
+        // BFS Solution
         Queue<TreeNode> q = new LinkedList<>();
         int level = 0;
         if(root != null){
@@ -43,6 +45,7 @@ class Solution {
             level++;
         }
         
-        return level;        
+        return level; 
+        */
     }
 }
