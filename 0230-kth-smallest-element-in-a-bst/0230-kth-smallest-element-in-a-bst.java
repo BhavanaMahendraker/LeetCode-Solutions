@@ -15,6 +15,7 @@
  */
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
+        /* HashSet In-Order method
         Stack<TreeNode> stack = new Stack<>();
         HashSet<TreeNode> visited = new HashSet<>();
         stack.push(root);
@@ -34,5 +35,25 @@ class Solution {
                 stack.push(curr.right);
         }
         return -1;
+        */
+        
+        // Inorder traversal
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root; // pointer
+        
+        while(k >= 0){
+            while(curr != null){
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            k--;
+            if(k == 0)
+                return curr.val;
+            curr = curr.right; // Point at right (even if null)
+                                // but push to stack in next iteration
+        }
+        return -1;
+        
     }
 }
