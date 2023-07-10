@@ -1,5 +1,7 @@
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
+        // Bucket Sort
+        
         HashMap<Integer, Integer> freq = new HashMap<>();
         ArrayList<Integer>[] bucket = new ArrayList[nums.length + 1]; 
         for(int num: nums){
