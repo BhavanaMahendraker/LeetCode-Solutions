@@ -29,7 +29,6 @@ class Twitter {
             followeesMap.put(userId, new HashSet<>());
         }
         followeesMap.get(userId).add(userId);
-        
         for(int followeeId: followeesMap.get(userId)){
             if(!postsMap.containsKey(followeeId))
                 continue;
