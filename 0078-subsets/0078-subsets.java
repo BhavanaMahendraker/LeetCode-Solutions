@@ -11,9 +11,11 @@ class Solution {
             return;
         }
         
+        // append new element
         subset.add(nums[start]);
         backtrackDFS(res, subset, start + 1, nums);
         
+        // append empty
         subset.remove(subset.size() - 1);
         backtrackDFS(res, subset, start + 1, nums);
     }
