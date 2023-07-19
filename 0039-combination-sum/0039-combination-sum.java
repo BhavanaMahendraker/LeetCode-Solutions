@@ -14,6 +14,14 @@ class Solution {
         if(sum > target || start >= candidates.length)
             return;
         
+        
+        comb.add(candidates[start]);
+        dfs(res, comb, start, sum + candidates[start], target, candidates);
+        comb.remove(comb.size() - 1);
+        
+        dfs(res, comb, start + 1, sum, target, candidates);
+        
+        /*
         for(int i = start; i < candidates.length; i++){
             if(sum + candidates[i] > target)
                 continue;
@@ -21,5 +29,6 @@ class Solution {
             dfs(res, comb, i, sum + candidates[i], target, candidates);
             comb.remove(comb.size() - 1);
         }
+        */
     }
 }
