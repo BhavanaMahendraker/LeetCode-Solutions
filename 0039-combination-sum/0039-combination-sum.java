@@ -14,7 +14,7 @@ class Solution {
         if(sum > target || start >= candidates.length)
             return;
         
-        
+        // Neetcode
         comb.add(candidates[start]);
         dfs(res, comb, start, sum + candidates[start], target, candidates);
         comb.remove(comb.size() - 1);
@@ -22,6 +22,7 @@ class Solution {
         dfs(res, comb, start + 1, sum, target, candidates);
         
         /*
+        // loop solution 
         for(int i = start; i < candidates.length; i++){
             if(sum + candidates[i] > target)
                 continue;
