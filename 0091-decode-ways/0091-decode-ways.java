@@ -1,5 +1,21 @@
 class Solution {
     public int numDecodings(String s) {
+        int[] dp = new int[s.length()+1];
+        Arrays.fill(dp, 1);
+        
+        for(int i=s.length() - 1; i>=0; i--){
+            if(s.charAt(i) == '0')
+                dp[i] = 0;
+            else{
+                dp[i] = dp[i+1];
+                if(i+1 < s.length() && Integer.valueOf(s.substring(i, i+2)) <= 26)
+                    dp[i] += dp[i+2];
+            }
+        }
+        return dp[0];
+    }
+    /*
+    public int numDecodings(String s) {
         int[] memo = new int[s.length()];
         Arrays.fill(memo, -1);
         return dfs(s, 0, memo);
@@ -20,4 +36,5 @@ class Solution {
         
         return memo[start];
     }
+    */
 }
