@@ -1,4 +1,5 @@
 class Solution {
+    /*
     public boolean wordBreak(String s, List<String> wordDict) {
         boolean[] dp = new boolean[s.length()+1];
         Arrays.fill(dp, false);
@@ -17,4 +18,28 @@ class Solution {
         
         return dp[0];
     }
+    */
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Queue<Integer> queue = new LinkedList<Integer>();
+        queue.add(0);
+        HashSet<Integer> visited = new HashSet<>();
+        
+        while(!queue.isEmpty()){
+            int start = queue.poll();
+            
+            if(visited.contains(start)) 
+                continue;
+            for(int end = start+1; end <= s.length(); end++){
+                String sub = s.substring(start, end);
+                if(wordDict.contains(sub)){
+                    if(end == s.length()) return true;
+                    queue.add(end);
+                }
+            }
+            
+            visited.add(start);
+        }
+        return false;        
+    }
+    
 }
