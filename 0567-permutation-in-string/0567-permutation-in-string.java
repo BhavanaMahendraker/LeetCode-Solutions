@@ -16,7 +16,7 @@ class Solution {
                 if (decrement <= 0)
                     newMap.remove(s2.charAt(left));
                 else
-                    newMap.put(s2.charAt(left), newMap.getOrDefault(s2.charAt(left), 0) -1);
+                    newMap.put(s2.charAt(left), newMap.get(s2.charAt(left)) -1);
                 left++;
             }
             newMap.put(s2.charAt(right), newMap.getOrDefault(s2.charAt(right), 0) + 1);
