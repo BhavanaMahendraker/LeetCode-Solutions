@@ -15,7 +15,7 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        // TC: O(N), SC: O(2^h - 1) ==> h = height of the tree
+        // TC: O(N), SC: O(N) 
         List<List<Integer>> resList = new ArrayList<>();
         if(root == null)
             return resList;
