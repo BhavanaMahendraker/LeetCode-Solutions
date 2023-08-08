@@ -16,11 +16,3 @@ class Solution {
         return res;
     }
 }
-
-/*
-[3,4,5,1,2]
- l       r
-     m
-
-
-*/
