@@ -22,12 +22,12 @@ class Solution {
     
     public int dfs(TreeNode node, int[] diameterHeight){
         if(node == null){
-            return -1;
+            return 0;
         }
         
         int left = dfs(node.left, diameterHeight);
         int right = dfs(node.right, diameterHeight);
-        diameterHeight[0] = Math.max(diameterHeight[0], left + right + 2);
+        diameterHeight[0] = Math.max(diameterHeight[0], left + right);
         diameterHeight[1] = 1+ Math.max(left, right);
         
         return diameterHeight[1];
