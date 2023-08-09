@@ -1,5 +1,5 @@
 class Solution {
-    /*
+    
     public boolean wordBreak(String s, List<String> wordDict) {
         boolean[] dp = new boolean[s.length()+1];
         Arrays.fill(dp, false);
@@ -18,7 +18,7 @@ class Solution {
         
         return dp[0];
     }
-    */
+    /*
     public boolean wordBreak(String s, List<String> wordDict) {
         Queue<Integer> queue = new LinkedList<Integer>();
         queue.add(0);
@@ -41,5 +41,5 @@ class Solution {
         }
         return false;        
     }
-    
+    */
 }
