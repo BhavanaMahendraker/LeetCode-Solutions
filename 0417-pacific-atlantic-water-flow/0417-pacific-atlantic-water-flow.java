@@ -28,12 +28,12 @@ class Solution {
     
     public void possibleCellsDFS(int[][] heights, HashSet<ArrayList<Integer>> cellsSet, 
                                  int i, int j, int prevHeight){
-        List<Integer> a = List.of(i,j);
+        //List<Integer> a = List.of(i,j);
         if(i<0 || j<0 || i==heights.length || j==heights[0].length 
-           || heights[i][j] <  prevHeight || cellsSet.contains(a))
+           || heights[i][j] <  prevHeight || cellsSet.contains(List.of(i,j)))
             return;
         
-        cellsSet.add(new ArrayList(a));
+        cellsSet.add(new ArrayList(List.of(i,j)));
         
         possibleCellsDFS(heights, cellsSet, i+1, j, heights[i][j]);
         possibleCellsDFS(heights, cellsSet, i-1, j, heights[i][j]);
