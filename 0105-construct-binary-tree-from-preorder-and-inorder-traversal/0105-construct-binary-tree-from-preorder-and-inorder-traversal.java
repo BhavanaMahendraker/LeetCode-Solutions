@@ -24,6 +24,7 @@ class Solution {
         for(int i=0; i<inorder.length; i++){
             if(inorder[i] == preorder[0]){
                 mid = i;
+                break;
             }
         }
         
