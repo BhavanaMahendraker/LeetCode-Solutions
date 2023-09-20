@@ -6,9 +6,8 @@ class Solution {
         Stack<String> stack = new Stack<>();
 
         for (List<String> ticket : tickets) {
-            graph
-                .computeIfAbsent(ticket.get(0), k -> new PriorityQueue<>())
-                .add(ticket.get(1));
+            graph.putIfAbsent(ticket.get(0), new PriorityQueue<String>());
+            graph.get(ticket.get(0)).add(ticket.get(1));
         }
 
         stack.push("JFK");
