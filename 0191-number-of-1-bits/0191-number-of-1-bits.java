@@ -12,6 +12,9 @@ public class Solution {
                 
         return res;
         
+        // Explanation:
+        // https://leetcode.com/problems/number-of-1-bits/discuss/55099/Simple-Java-Solution-Bit-Shifting
+        
         /*
         // TC : O(1), SC: O(1)
         int res = 0;
