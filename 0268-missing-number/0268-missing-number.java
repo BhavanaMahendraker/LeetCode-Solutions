@@ -11,8 +11,8 @@ class Solution {
         return res;
         */
         
-        // Expected Sum - Actual Sum
-        // Expected = n(n+1)/2
+        // (expected_sum - actual_sum) Soltion
+        // expected_sum = n(n+1)/2
         int expected = nums.length * (nums.length + 1) / 2;
         int actual = 0;
         
@@ -21,6 +21,5 @@ class Solution {
         }
         
         return expected - actual;
-        
     }
 }
