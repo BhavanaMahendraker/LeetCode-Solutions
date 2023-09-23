@@ -1,5 +1,7 @@
 class Solution {
     public int missingNumber(int[] nums) {
+        /*
+        // XOR solution
         int res = nums.length;
         
         for(int i=0; i<nums.length; i++){
@@ -7,5 +9,18 @@ class Solution {
         }
         
         return res;
+        */
+        
+        // Expected Sum - Actual Sum
+        // Expected = n(n+1)/2
+        int expected = nums.length * (nums.length + 1) / 2;
+        int actual = 0;
+        
+        for(int num: nums){
+            actual += num;
+        }
+        
+        return expected - actual;
+        
     }
 }
