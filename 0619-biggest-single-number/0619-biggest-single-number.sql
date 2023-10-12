@@ -9,8 +9,10 @@ WITH cte AS(
 
 
 SELECT 
-CASE WHEN COUNT(num) > 0 THEN max(num)
-ELSE NULL END 
+(CASE 
+    WHEN COUNT(num) > 0 THEN max(num)
+    ELSE NULL 
+END)
 AS num
 FROM cte
 
