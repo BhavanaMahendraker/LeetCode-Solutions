@@ -1,22 +1,26 @@
 class Solution {
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        backtrackDFS(res, new ArrayList<>(), 0, nums);
-        return res;
-    }
     
-    public void backtrackDFS(List<List<Integer>> res, List<Integer> subset, int start, int[] nums){
-        if(start >= nums.length){
+    public void solve(List<List<Integer>> res, int[] nums, List<Integer> subset, int index){
+        if(index >= nums.length){
             res.add(new ArrayList(subset));
             return;
         }
         
-        // append new element
-        subset.add(nums[start]);
-        backtrackDFS(res, subset, start + 1, nums);
+        // exclude curr
+        solve(res, nums, subset, index+1);
         
-        // append empty
+        
+        // include curr
+        subset.add(nums[index]);
+        solve(res, nums, subset, index+1);
         subset.remove(subset.size() - 1);
-        backtrackDFS(res, subset, start + 1, nums);
+    }
+    
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        solve(res, nums, new ArrayList<>(), 0);
+        
+        return res;
     }
 }
