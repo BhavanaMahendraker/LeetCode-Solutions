@@ -1,10 +1,10 @@
 class Solution {
-    public int Recursive(int[] cost, int index){
+    public int recursive(int[] cost, int index){
         if(index >= cost.length){
             return 0;
         }        
-        return cost[index] + Math.min(Recursive(cost, index + 1),
-                                        Recursive(cost, index + 2));
+        return cost[index] + Math.min(recursive(cost, index + 1),
+                                        recursive(cost, index + 2));
     }
     
     public int topDown(int[] cost, int index, HashMap<Integer, Integer> memo){
@@ -22,15 +22,29 @@ class Solution {
                                                topDown(cost, index + 2, memo)));
         return memo.get(index);
     }
+    
+    public int bottomUp(int[] cost){
+        int n = cost.length;
+        int[] dp = new int[n + 2];
+        
+        for(int i=n-1; i>=0; i--){
+            dp[i] = cost[i] + Math.min(dp[i+1], dp[i+2]);
+        }        
+        return Math.min(dp[0], dp[1]);
+    }
 
     public int minCostClimbingStairs(int[] cost) {
         
         //  Recursive
-        //return Math.min(Recursive(cost, 0), Recursive(cost, 1));
+        //return Math.min(recursive(cost, 0), recursive(cost, 1));
         
         // Top Down
         // STEP 1
-        HashMap<Integer, Integer> memo = new HashMap<>();
-        return Math.min(topDown(cost, 0, memo), topDown(cost, 1, memo));
+        //HashMap<Integer, Integer> memo = new HashMap<>();
+        //return Math.min(topDown(cost, 0, memo), topDown(cost, 1, memo));
+        
+        // Bottom Up
+        // STEP 1
+        return bottomUp(cost);
     }
 }
