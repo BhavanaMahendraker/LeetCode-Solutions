@@ -1,22 +1,36 @@
 class Solution {
-    public int solve(int[] cost, int index, HashMap<Integer, Integer> memo){
+    public int Recursive(int[] cost, int index){
+        if(index >= cost.length){
+            return 0;
+        }        
+        return cost[index] + Math.min(Recursive(cost, index + 1),
+                                        Recursive(cost, index + 2));
+    }
+    
+    public int topDown(int[] cost, int index, HashMap<Integer, Integer> memo){
         if(index >= cost.length){
             return 0;
         }
         
+        // STEP 3
         if(memo.containsKey(index)){
             return memo.get(index);
         }
         
-        memo.put(index, cost[index] + Math.min(solve(cost, index + 1, memo), 
-                                               solve(cost, index + 2, memo)));
+        // STEP 2
+        memo.put(index, cost[index] + Math.min(topDown(cost, index + 1, memo), 
+                                               topDown(cost, index + 2, memo)));
         return memo.get(index);
     }
 
     public int minCostClimbingStairs(int[] cost) {
+        
+        //  Recursive
+        //return Math.min(Recursive(cost, 0), Recursive(cost, 1));
+        
+        // Top Down
+        // STEP 1
         HashMap<Integer, Integer> memo = new HashMap<>();
-        memo.put(0, solve(cost, 0, memo));
-        memo.put(1, solve(cost, 1, memo));
-        return Math.min(memo.get(0), memo.get(1));
+        return Math.min(topDown(cost, 0, memo), topDown(cost, 1, memo));
     }
 }
