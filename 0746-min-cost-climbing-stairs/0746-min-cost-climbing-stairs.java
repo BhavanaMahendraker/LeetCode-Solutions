@@ -27,9 +27,10 @@ class Solution {
         int n = cost.length;
         //STEP 1
         int[] dp = new int[n + 1];
+        
         //STEP 2
         //BASE CASE - dp[n+1] = 0; dp[n] = 0 
-        dp[n -1] =  cost[n-1];
+        dp[n-1] =  cost[n-1];
         
         //STEP 3
         for(int i=n-2; i>=0; i--){
