@@ -1,5 +1,7 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
+        
+        // TC: O(mn), SC: O(m+n)
         HashMap<String, ArrayList<String>> map = new HashMap<>();
         
         for(String str: strs){
