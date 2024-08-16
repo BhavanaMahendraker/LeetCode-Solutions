@@ -7,13 +7,13 @@ class Solution {
             freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
         
-        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a,b) -> b.getValue() - a.getValue());
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> freq.get(b) - freq.get(a));
         
-        pq.addAll(freq.entrySet());
+        pq.addAll(freq.keySet());
         
         int[] res = new int[k];
         for(int i =0; i<k; i++){
-            res[i] = pq.poll().getKey();
+            res[i] = pq.poll();
         }
         
         return res;
