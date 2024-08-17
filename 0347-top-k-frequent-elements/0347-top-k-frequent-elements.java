@@ -25,6 +25,9 @@ class Solution {
                         pos++;
                     }
                 }
+                if(pos >= k){
+                    break;
+                }
             }
         }
         
