@@ -8,23 +8,24 @@ class Solution {
             freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
         }
         
-        for(int i=0; i<bucketSort.length; i++){
-            bucketSort[i] = new ArrayList<>();
-        }
-        
         for(int key: freqMap.keySet()){
+            int index = freqMap.get(key);
+            if(bucketSort[index] == null)
+                bucketSort[index] = new ArrayList<>();
             bucketSort[freqMap.get(key)].add(key);
         }
         
         int[] res = new int[k];
-        int l = 0;
+        int pos = 0;
         for(int i= bucketSort.length - 1; i>=0 ; i--){
-            ArrayList<Integer> currList = bucketSort[i];
-            for(int j=0; j<currList.size(); j++){
-                if(l < k){
-                    res[l] = currList.get(j);
-                    l++;
-                }
+            if(bucketSort[i] != null){
+                ArrayList<Integer> currList = bucketSort[i];
+                for(int j=0; j<currList.size(); j++){
+                    if(pos < k){
+                        res[pos] = currList.get(j);
+                        pos++;
+                    }
+                }       
             }
         }
         
