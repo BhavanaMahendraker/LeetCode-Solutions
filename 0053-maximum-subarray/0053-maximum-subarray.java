@@ -18,8 +18,8 @@ class Solution {
         
         return maxSum;
        
-        
-//         // TC: O(n^2), SC: O(1)
+        // Brute Force Approach
+        // TC: O(n^2), SC: O(1)
 //         int maxSum = nums[0];
         
 //         for(int i =0; i<nums.length; i++){
@@ -32,6 +32,7 @@ class Solution {
 //         return maxSum;
     }
 }
+
 
 /*
 [-2,1,-3,4,-1,2,1,-5,4]
