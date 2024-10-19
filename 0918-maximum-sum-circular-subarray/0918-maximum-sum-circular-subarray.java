@@ -11,10 +11,6 @@ class Solution {
             globalMin = Math.min(globalMin, currMin);
         }
         
-        System.out.println(globalMin);
-        System.out.println(globalMax);
-        System.out.println(totalSum);
-        
         if(globalMax > 0)
             return Math.max(globalMax, totalSum - globalMin);
         
