@@ -1,5 +1,26 @@
 class Solution {
     public int trap(int[] height) {
+        //TC: O(N), SC: O(1)
+        int leftMax = height[0], rightMax = height[height.length - 1];
+        int left = 0, right = height.length - 1;
+        int total = 0;
+        
+        while(left < right){
+            if(leftMax < rightMax){
+                left++;
+                leftMax = Math.max(leftMax, height[left]);
+                total += leftMax - height[left];
+            } else{
+                right--;
+                rightMax = Math.max(rightMax, height[right]);
+                total += rightMax - height[right];
+            }
+        }
+        
+        return total;
+        
+        /*        
+        // TC: O(n), SC: O(n)
         int n = height.length;
         int[] leftHeights = new int[n];
         int[] rightHeights = new int[n];
@@ -19,6 +40,7 @@ class Solution {
         }
         
         return trappedWater;
+        */
     }
 }
 
