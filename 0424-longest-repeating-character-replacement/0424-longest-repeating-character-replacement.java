@@ -9,6 +9,9 @@ class Solution {
             char rightChar = s.charAt(right);
             freqMap.put(rightChar, freqMap.getOrDefault(rightChar, 0) + 1);
             
+            // Not checking the entire map for maxFreq example
+            // We don't care if the maxFreq decreases
+            // We only care when the maxFreq increases
             maxFreq = Math.max(maxFreq, freqMap.get(rightChar));
             while((right - left +  1) - maxFreq > k){
                 char leftChar = s.charAt(left);
