@@ -1,6 +1,8 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        int left = 0, right = 0;
+        
+        //TC: O(26 * N), SC: O(26)
+        int left = 0;
         HashMap<Character, Integer> freqMapS1 = new HashMap<>();
         HashMap<Character, Integer> freqMapS2 = new HashMap<>();
         
@@ -8,22 +10,19 @@ class Solution {
             freqMapS1.put(ch, freqMapS1.getOrDefault(ch, 0)+1);
         }     
         
-        while(right < s2.length()){
+        for(int right = 0; right < s2.length(); right++){
             if(freqMapS1.equals(freqMapS2))
                 return true;
             
             if(right >= s1.length()){
-                char leftChar = s2.charAt(left);
-                if(freqMapS2.get(leftChar) - 1 <= 0){
-                    freqMapS2.remove(leftChar);
+                if(freqMapS2.get(s2.charAt(left)) - 1 <= 0){
+                    freqMapS2.remove(s2.charAt(left));
                 } else{
-                    freqMapS2.put(leftChar, freqMapS2.get(leftChar) - 1);
+                    freqMapS2.put(s2.charAt(left), freqMapS2.get(s2.charAt(left)) - 1);
                 }
                 left++;
             }
-            char rightChar = s2.charAt(right);
-            freqMapS2.put(rightChar, freqMapS2.getOrDefault(rightChar, 0) + 1);
-            right++;
+            freqMapS2.put(s2.charAt(right), freqMapS2.getOrDefault(s2.charAt(right), 0) + 1);
         }
         
         return freqMapS1.equals(freqMapS2);
