@@ -9,8 +9,8 @@ class Solution {
         }     
         
         while(right < s2.length()){
-            char rightChar = s2.charAt(right);
-            freqMapS2.put(rightChar, freqMapS2.getOrDefault(rightChar, 0) + 1);
+            if(freqMapS1.equals(freqMapS2))
+                return true;
             
             if(right >= s1.length()){
                 char leftChar = s2.charAt(left);
@@ -21,13 +21,12 @@ class Solution {
                 }
                 left++;
             }
+            char rightChar = s2.charAt(right);
+            freqMapS2.put(rightChar, freqMapS2.getOrDefault(rightChar, 0) + 1);
             right++;
-            
-            if(freqMapS1.equals(freqMapS2))
-                return true;
         }
         
-        return false;
+        return freqMapS1.equals(freqMapS2);
     }
 }
 
