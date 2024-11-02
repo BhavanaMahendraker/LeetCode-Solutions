@@ -7,8 +7,8 @@ class Solution {
                 left = right;
             } else{
                 maxProfit = Math.max(maxProfit, prices[right] - prices[left]);
-                right++;
             }
+            right++;
         }
         
         return maxProfit;
