@@ -46,8 +46,6 @@ stack =>
 [-3,-3]
 [0,-2]
 [-2,-2]
-curr, min
-
-if currval < min -> update minSoFar
+[curr, curr or peek()[1]]
 
 */
