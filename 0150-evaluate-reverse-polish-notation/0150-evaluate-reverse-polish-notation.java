@@ -3,7 +3,7 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         
         for(String str: tokens){
-            Integer first, second;
+            int first, second;
             switch(str){
                 case "+":
                     second = stack.pop();
