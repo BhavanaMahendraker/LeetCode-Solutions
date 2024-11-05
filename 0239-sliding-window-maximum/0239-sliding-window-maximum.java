@@ -10,7 +10,7 @@ class Solution {
             }
             dq.addLast(right);
             
-            if(!dq.isEmpty() && dq.peekFirst() < right - k + 1){
+            if(!dq.isEmpty() && right - dq.peekFirst() + 1 > k){
                 dq.pollFirst();
             }
             
