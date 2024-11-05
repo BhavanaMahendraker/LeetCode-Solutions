@@ -3,7 +3,7 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         
         for(String str: tokens){
-            Integer first, second;
+            int first, second;
             switch(str){
                 case "+":
                     second = stack.pop();
@@ -26,7 +26,7 @@ class Solution {
                     stack.push(first / second);
                     break;
                 default:
-                    stack.push(Integer.parseInt(str));
+                    stack.push(Integer.valueOf(str));
             }
         }
         
