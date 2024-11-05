@@ -6,24 +6,24 @@ class Solution {
             Integer first, second;
             switch(str){
                 case "+":
-                    first = stack.pop();
                     second = stack.pop();
-                    stack.push(second + first);
+                    first = stack.pop();
+                    stack.push(first + second);
                     break;
                 case "-":
-                    first = stack.pop();
                     second = stack.pop();
-                    stack.push(second - first);
+                    first = stack.pop();
+                    stack.push(first - second);
                     break;
                 case "*":
-                    first = stack.pop();
                     second = stack.pop();
-                    stack.push(second * first);
+                    first = stack.pop();
+                    stack.push(first * second);
                     break;
                 case "/":
-                    first = stack.pop();
                     second = stack.pop();
-                    stack.push(second / first);
+                    first = stack.pop();
+                    stack.push(first / second);
                     break;
                 default:
                     stack.push(Integer.valueOf(str));
