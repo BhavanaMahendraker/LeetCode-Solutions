@@ -1,29 +1,39 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        int targetRow, rows = matrix.length, cols = matrix[0].length, up = 0, down = rows -1;
-
-        while(up <= down){
-            targetRow = (up+down) / 2;
-            if(matrix[targetRow][cols - 1] < target)
-                up = targetRow + 1;
-            else if(matrix[targetRow][0] > target)
-                down = targetRow - 1;
-            else 
-                break;
-        }
-        if(up > down) return false;
-        targetRow = (up+down) / 2;
-        int left = 0, right = cols - 1;
+        int targetRow = findTargetRow(matrix, target);
+        if(targetRow == -1)
+            return false;
+        
+        int left = 0, right = matrix[targetRow].length - 1;
         while(left <= right){
-            int mid = (left + right) / 2;
-            if(matrix[targetRow][mid] < target)
-                left = mid + 1;
-            else if (matrix[targetRow][mid] > target)
-                right = mid - 1;
-            else
+            int mid = (right + left) / 2;
+            if(matrix[targetRow][mid] == target)
                 return true;
+            if(matrix[targetRow][mid] < target){
+                left = mid + 1;
+            } else{
+                right = mid - 1;
+            }
         }
-
-        return false;        
+        
+        return false;
+    }
+    
+    public int findTargetRow(int[][] matrix, int target){
+        int left =0, right = matrix.length - 1; 
+        
+        while(left <= right){
+            int mid = (right + left) / 2;
+            if(matrix[mid][0] <= target && target <= matrix[mid][matrix[mid].length-1]){
+                return mid;
+            }
+            if(matrix[mid][0] > target){
+                right = mid - 1;
+            } else if (target > matrix[mid][matrix[mid].length-1]) {
+                left = mid + 1;
+            } 
+        }
+        
+        return -1;
     }
 }
