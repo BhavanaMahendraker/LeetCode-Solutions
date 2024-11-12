@@ -6,7 +6,7 @@ class Solution {
         
         int left = 0, right = matrix[targetRow].length - 1;
         while(left <= right){
-            int mid = (right + left) / 2;
+            int mid = left + ((right - left) / 2);
             if(matrix[targetRow][mid] == target)
                 return true;
             if(matrix[targetRow][mid] < target){
@@ -23,7 +23,7 @@ class Solution {
         int left =0, right = matrix.length - 1; 
         
         while(left <= right){
-            int mid = (right + left) / 2;
+            int mid = left + ((right - left) / 2);
             if(matrix[mid][0] <= target && target <= matrix[mid][matrix[mid].length-1]){
                 return mid;
             }
