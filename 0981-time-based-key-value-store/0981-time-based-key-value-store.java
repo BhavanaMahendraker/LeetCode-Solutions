@@ -1,5 +1,6 @@
 class TimeMap {
     
+    // BINARY SEARCH
     // TC: set() -> O(1), get() -> O(logN)
     // SC: O(M*N)
     // Where N is the total number of values associated with a key and M is the total number of keys.
