@@ -10,24 +10,42 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode head = new ListNode(), dummy = head;
-        ListNode p = list1, q = list2;
+        ListNode p = list1, q = list2, res = new ListNode(), dummy = res;
         
-        while(p != null || q != null){
-            int val1 = p == null ? Integer.MAX_VALUE : p.val;
-            int val2 = q == null ? Integer.MAX_VALUE : q.val;
+        while(p != null || q!= null){
+            int pVal = p == null ? Integer.MAX_VALUE : p.val;
+            int qVal = q == null ? Integer.MAX_VALUE : q.val;
             
-            if(val1 < val2){
-                head.next = p;
-                p = p == null ? null : p.next;
+            if(pVal <= qVal){
+                res.next = p;
+                p = p.next;
             } else{
-                head.next = q;
-                q = q == null ? null : q.next;
+                res.next = q;
+                q = q.next;
             }
-            head = head.next;
+            res = res.next;
         }
-        head.next = null;
         
         return dummy.next;
+        
     }
 }
+
+/*
+1,2,4,5,6,7,8
+p
+
+
+1,3,4
+q
+
+pVal = pVal == null ? 0 : p.val
+qVal = qVal == null ? 0 : q.val
+
+pVal <=qVal
+    res.next() = p
+    p = p.next()
+else
+    res.next= q
+    q = q.next
+*/
