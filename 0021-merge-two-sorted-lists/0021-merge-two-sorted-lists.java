@@ -30,8 +30,8 @@ class Solution {
             return list2;
         }
         
-//         // Non-Recursive Solution
         
+//         // Non-Recursive Solution
 //         ListNode res = new ListNode(), dummy = res;
         
 //         while(list1 != null && list2!= null){
