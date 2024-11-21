@@ -4,7 +4,21 @@ class Solution {
         
         // return memoization(nums, 0, new HashMap<>());
         
-        return dp(nums);
+        // return dp(nums);
+        
+        return dp2(nums);
+    }
+    
+    private int dp2(int[] nums){
+        int second =0, first = 0;
+        
+        for(int i=nums.length-1; i>=0; i--){
+            int curr = Math.max(nums[i] + second, first);
+            second = first;
+            first = curr;
+        }
+        
+        return first;
     }
     
     private int dp(int[] nums){
