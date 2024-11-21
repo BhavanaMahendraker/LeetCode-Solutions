@@ -9,6 +9,7 @@ class Solution {
         return dp2(nums);
     }
     
+    // TC: O(N), SC: O(1)  --> optimized space
     private int dp2(int[] nums){
         int second =0, first = 0;
         
@@ -21,6 +22,7 @@ class Solution {
         return first;
     }
     
+    // TC: O(N), SC: O(N) ---> Passed 
     private int dp(int[] nums){
         int[] dp = new int[nums.length + 2];
         
@@ -34,7 +36,7 @@ class Solution {
         return dp[0];
     }
     
-    // TC: O(N), SC: O(N) 
+    // TC: O(N), SC: O(N) ---> Time Limit Exceeded
     private int memoization(int[] nums, int currIndex, HashMap<Integer, Integer> memo){
         if(currIndex >= nums.length){
             return 0;
