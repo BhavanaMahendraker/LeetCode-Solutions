@@ -10,7 +10,22 @@ class Solution {
         // return Math.max(memoization(nums, 0, nums.length - 1, new HashMap<>()),
         //                 memoization(nums, 1, nums.length, new HashMap<>()));
         
-        return Math.max(dp1(nums, 0, nums.length - 1), dp1(nums, 1, nums.length));
+        // return Math.max(dp1(nums, 0, nums.length - 1), dp1(nums, 1, nums.length));
+        return Math.max(dp2(nums, 0, nums.length - 1), dp1(nums, 1, nums.length));
+    }
+    
+    // TC: O(N)    SC: O(1) ---> Time Limit Exceeded
+    private int dp2(int[] nums, int start, int end){
+        int first = 0, second = 0;
+        
+        for(int i=end-1; i>=start; i--){
+            int curr = Math.max(nums[i] + second, first);
+            second = first;
+            first = curr;
+        }
+        
+        // this is needed because the value is getting stored at index "start" = 0 or 1
+        return Math.max(first, second);
     }
     
     // TC: O(N)    SC: O(N) ---> Time Limit Exceeded
@@ -23,6 +38,7 @@ class Solution {
             dp[i] = Math.max(nums[i] + dp[i+2], dp[i+1]);
         }
         
+        // this is needed because the value is getting stored at index "start" = 0 or 1
         return Math.max(dp[0], dp[1]);
     }
     
