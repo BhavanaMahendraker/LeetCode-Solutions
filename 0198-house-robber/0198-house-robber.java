@@ -1,31 +1,53 @@
 class Solution {
     public int rob(int[] nums) {
+        // return dfs(nums, 0);
+        
+        // return memoization(nums, 0, new HashMap<>());
+        
+        return dp(nums);
+    }
+    
+    private int dp(int[] nums){
         int[] dp = new int[nums.length + 2];
-        dp[0] = 0;
-        dp[1] = 0;
-        for(int i=2; i<dp.length; i++){
-            dp[i] = Math.max(nums[i-2] + dp[i-2], dp[i-1]);
+        
+        dp[nums.length + 1] = 0;
+        dp[nums.length] = 0;
+        
+        for(int i=nums.length-1; i>=0; i--){
+            dp[i] = Math.max(nums[i] + dp[i+2], dp[i+1]);
         }
         
-        return dp[dp.length - 1];
+        return dp[0];
     }
     
-    /* recursive stack
-    public int rob(int[] nums) {
-        HashMap<Integer, Integer> memo = new HashMap<>();
-        return dfs(nums, 0, memo);
-    }
-    
-    public int dfs(int[] nums, int start, HashMap<Integer, Integer> memo){
-        if(start >= nums.length){
+    // TC: O(N), SC: O(N) 
+    private int memoization(int[] nums, int currIndex, HashMap<Integer, Integer> memo){
+        if(currIndex >= nums.length){
             return 0;
         }
-        if(memo.containsKey(start)){
-            return memo.get(start);
-        }
-        int max = Math.max(nums[start] + dfs(nums, start + 2, memo), dfs(nums, start + 1, memo));
-        memo.put(start, max);
-        return max;
+        
+        if(memo.containsKey(currIndex))
+            return memo.get(currIndex);
+        
+        int includingCurrHouse = nums[currIndex] + dfs(nums, currIndex + 2);
+        int excludingCurrHouse = dfs(nums, currIndex + 1);
+        
+        int maxMoney = Math.max(includingCurrHouse, excludingCurrHouse);
+        memo.put(currIndex, maxMoney);
+        
+        return maxMoney;
     }
-    */
+    
+
+    // TC: O(2^N), SC: O(N) 
+    private int dfs(int[] nums, int currIndex){
+        if(currIndex >= nums.length){
+            return 0;
+        }
+        
+        int includingCurrHouse = nums[currIndex] + dfs(nums, currIndex + 2);
+        int excludingCurrHouse = dfs(nums, currIndex + 1);
+        
+        return Math.max(includingCurrHouse, excludingCurrHouse);
+    }
 }
