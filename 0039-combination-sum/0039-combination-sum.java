@@ -12,12 +12,19 @@ class Solution {
         
         if(target == 0){
             res.add(new ArrayList(comb));
+            return;
         }
         
-        for(int i=start; i<candidates.length; i++){
-            comb.add(candidates[i]);
-            dfs(res, comb, candidates, target - candidates[i], i);
-            comb.remove(comb.size() - 1);
-        }
+        comb.add(candidates[start]);
+        dfs(res, comb, candidates, target - candidates[start], start);
+        comb.remove(comb.size() - 1);
+        dfs(res, comb, candidates, target, start+1);
+
+        
+//         for(int i=start; i<candidates.length; i++){
+//             comb.add(candidates[i]);
+//             dfs(res, comb, candidates, target - candidates[i], i);
+//             comb.remove(comb.size() - 1);
+//         }
     }
 }
