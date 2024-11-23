@@ -1,8 +1,8 @@
 class Solution {
     public int combinationSum4(int[] nums, int target) {
         // return dfs(nums, target, 0);
-        // return memoization(nums, target, 0, new HashMap<>());
-        return dp(nums, target);
+        return memoization(nums, target, 0, new HashMap<>());
+        // return dp(nums, target);
     }
     
     public int dfs(int[]nums, int target, int index){
@@ -30,12 +30,20 @@ class Solution {
         if(memo.containsKey(target))
             return memo.get(target);
         
-        int including = 0;
-        if(nums[index] <= target)
-            including = memoization(nums, target - nums[index], 0, memo);
-        int excluding = memoization(nums, target, index + 1, memo);
+        int ans = 0;
         
-        memo.put(target, including + excluding);
+        for(int i=0; i<nums.length; i++){
+            ans += memoization(nums, target-nums[i], index, memo); // note no use of "index"
+        }
+        
+        memo.put(target, ans);
+        
+//         int including = 0;
+//         if(nums[index] <= target)
+//             including = memoization(nums, target - nums[index], 0, memo);
+//         int excluding = memoization(nums, target, index + 1, memo);
+        
+//         memo.put(target, including + excluding);
         
         return memo.get(target);
     }
