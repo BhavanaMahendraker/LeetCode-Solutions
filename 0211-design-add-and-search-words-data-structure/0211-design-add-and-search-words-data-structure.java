@@ -26,7 +26,6 @@ class WordDictionary {
             }
             curr = curr.children[index];
         }
-        
         curr.endOfWord = true;
     }
     
@@ -36,24 +35,25 @@ class WordDictionary {
     }
     
     private boolean dfsSearch(String word, int wordIndex, TrieNode curr){
-        
-        for(int i=wordIndex; i< word.length(); i++){
-            if(word.charAt(i) == '.'){
-                for(int j=0; j<26; j++){
-                    if(curr.children[j] != null && dfsSearch(word, i + 1, curr.children[j])){
-                        return true;
-                    }
-                }
-                return false;
-            } else {
-                if(curr.children[word.charAt(i) - 'a'] == null){
-                    return false;
-                }
-                curr = curr.children[word.charAt(i) - 'a'];
-            }
+        if(wordIndex >= word.length()){
+            return curr.endOfWord;
         }
         
-        return curr.endOfWord;        
+        if(curr == null){
+            return false;
+        }
+        
+        char ch = word.charAt(wordIndex);
+        if(word.charAt(wordIndex) == '.'){
+            for(TrieNode node: curr.children){
+                if(node != null && dfsSearch(word, wordIndex + 1, node))
+                    return true;
+            }
+            return false;
+        } else{
+            return curr.children[ch - 'a'] != null 
+                && dfsSearch(word, wordIndex + 1, curr.children[ch - 'a']);
+        }
     }
 }
 
