@@ -39,10 +39,6 @@ class WordDictionary {
             return curr.endOfWord;
         }
         
-        if(curr == null){
-            return false;
-        }
-        
         char ch = word.charAt(wordIndex);
         if(ch == '.'){
             for(TrieNode node: curr.children){
