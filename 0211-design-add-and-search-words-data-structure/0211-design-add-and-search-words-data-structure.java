@@ -46,8 +46,9 @@ class WordDictionary {
         char ch = word.charAt(wordIndex);
         if(ch == '.'){
             for(TrieNode node: curr.children){
-                if(node != null && dfsSearch(word, wordIndex + 1, node))
+                if(node != null && dfsSearch(word, wordIndex + 1, node)){
                     return true;
+                }
             }
             return false;
         } else{
