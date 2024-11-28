@@ -72,6 +72,7 @@ class Solution {
         return root;
     }
     
+    // Don't use this solution
     private TreeNode loveBabbarSolution(int[] preorder, int[] inorder, 
                                         int[] preorderIndex, int inorderStart, int inorderEnd) {
         if(preorderIndex[0] >= preorder.length || inorderStart > inorderEnd){
