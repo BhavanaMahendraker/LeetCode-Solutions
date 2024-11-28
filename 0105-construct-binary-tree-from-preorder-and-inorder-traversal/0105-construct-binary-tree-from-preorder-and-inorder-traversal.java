@@ -16,7 +16,9 @@
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         // return neetcodeSolution(preorder, inorder);
-        return loveBabbarSolution(preorder, inorder, new int[]{0}, 0, inorder.length - 1);
+        // return loveBabbarSolution(preorder, inorder, new int[]{0}, 0, inorder.length - 1);
+        return neetcodeSolutionOptimized(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+        
     }
     
     private TreeNode loveBabbarSolution(int[] preorder, int[] inorder, 
@@ -40,6 +42,28 @@ class Solution {
         root.right = loveBabbarSolution(preorder, inorder, preorderIndex, mid + 1, inorderEnd);
         
         return root;        
+    }
+    
+    private TreeNode neetcodeSolutionOptimized(int[] preorder, int[] inorder, 
+                                               int preStart, int preEnd, int inStart, int inEnd) {
+        if(preStart > preEnd || inStart > inEnd){
+            return null;
+        }
+        
+        TreeNode root = new TreeNode(preorder[preStart]);
+        
+        int mid = 0;
+        for(int i = inStart; i<=inEnd; i++){
+            if(inorder[i] == preorder[preStart]){
+                mid = i;
+                break;
+            }
+        }
+        
+        root.left = neetcodeSolutionOptimized(preorder, inorder, preStart+1, preStart + mid - inStart, inStart, mid - 1);
+        root.right = neetcodeSolutionOptimized(preorder, inorder, preStart + mid - inStart + 1, preEnd, mid+1, inEnd);
+        
+        return root;
     }
     
     private TreeNode neetcodeSolution(int[] preorder, int[] inorder) {
