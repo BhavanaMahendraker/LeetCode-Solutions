@@ -1,58 +1,63 @@
 class TrieNode{
-    char ch;
     TrieNode[] children;
     boolean endOfWord;
     
-    public TrieNode(char ch){
-        this.ch = ch;
+    public TrieNode(){
         children = new TrieNode[26];
         endOfWord = false;
     }
 }
 
 class Trie {
+
     TrieNode root;
     
     public Trie() {
-        root = new TrieNode(' ');
+        root = new TrieNode();
     }
     
     public void insert(String word) {
-        TrieNode node = root;
         
-        for(char letter: word.toCharArray()){
-            if(node.children[letter - 'a'] == null){
-                node.children[letter - 'a'] = new TrieNode(letter);
+        TrieNode curr = root;
+        
+        for(char ch: word.toCharArray()){
+            int index = ch - 'a';
+            if(curr.children[index] == null){
+                curr.children[index] = new TrieNode();
             }
-            node = node.children[letter - 'a'];
+            curr = curr.children[index];
         }
-        node.endOfWord = true;
+        curr.endOfWord = true;
     }
     
     public boolean search(String word) {
-        TrieNode node = root;
+        TrieNode curr = root;
         
-        for(char letter: word.toCharArray()){
-            if(node.children[letter - 'a'] == null){
+        for(char ch: word.toCharArray()){
+            int index = ch - 'a';
+            if(curr.children[index] == null)
                 return false;
-            }
-            node = node.children[letter - 'a'];
+            curr = curr.children[index];
         }
-        return node.endOfWord;
+        
+        return curr.endOfWord;
     }
     
     public boolean startsWith(String prefix) {
-        TrieNode node = root;
+        TrieNode curr = root;
         
-        for(char letter: prefix.toCharArray()){
-            if(node.children[letter - 'a'] == null){
+        for(char ch: prefix.toCharArray()){
+            int index = ch - 'a';
+            if(curr.children[index] == null)
                 return false;
-            }
-            node = node.children[letter - 'a'];
+            curr = curr.children[index];
         }
+        
         return true;
     }
 }
+
+
 
 /**
  * Your Trie object will be instantiated and called as such:
