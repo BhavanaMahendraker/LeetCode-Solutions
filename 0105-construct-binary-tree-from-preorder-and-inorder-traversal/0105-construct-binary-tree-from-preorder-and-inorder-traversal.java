@@ -21,6 +21,7 @@ class Solution {
         
     }
     
+    // Note to self: We don't need preEnd but for my understanding, I have mentioned it as well
     private TreeNode myBestUnderStoodSolution(int[] preorder, int[] inorder, 
                                                int preStart, int preEnd, int inStart, int inEnd) {
         if(preStart > preEnd || inStart > inEnd){
@@ -37,6 +38,7 @@ class Solution {
             }
         }
         // preStart + mid - inStart + 1 ==> Gives the index of the starting point of right half in preorder array
+        // Basically, preStart + leftTreeLength + 1 == preStart of rightTree
         root.left = myBestUnderStoodSolution(preorder, inorder, 
                                               preStart+1, preStart + mid - inStart, 
                                               inStart, mid - 1);
