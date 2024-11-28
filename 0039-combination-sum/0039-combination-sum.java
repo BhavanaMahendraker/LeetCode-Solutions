@@ -15,15 +15,17 @@ class Solution {
             return;
         }
         
-        comb.add(candidates[start]);
-        helper(candidates, target - candidates[start], comb, res, start);
-        comb.remove(comb.size() - 1);
-        helper(candidates, target, comb, res, start + 1);
+        // comb.add(candidates[start]);
+        // helper(candidates, target - candidates[start], comb, res, start);
+        // comb.remove(comb.size() - 1);
+        // helper(candidates, target, comb, res, start + 1);
         
-        // for(int i=start; i<candidates.length; i++){
-        //     comb.add(candidates[i]);
-        //     helper(candidates, target - candidates[i], comb, res, i);
-        //     comb.remove(comb.size() - 1);
-        // }
+        for(int i=start; i<candidates.length; i++){
+            if(candidates[i] > target)
+                continue;
+            comb.add(candidates[i]);
+            helper(candidates, target - candidates[i], comb, res, i);
+            comb.remove(comb.size() - 1);
+        }
     }
 }
