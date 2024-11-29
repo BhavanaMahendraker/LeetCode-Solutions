@@ -1,27 +1,28 @@
 class Solution {
     public int numIslands(char[][] grid) {
-        int islands = 0;
+        int countIsland = 0;
         
         for(int i=0; i<grid.length; i++){
             for(int j=0; j<grid[0].length; j++){
                 if(grid[i][j] == '1'){
-                    islands++;
-                    dfs(grid, i, j);
+                    countIsland++;
+                    markIslandVisited(grid, i, j);
                 }
             }
         }
-
-        return islands;
+        
+        return countIsland;
     }
     
-    public void dfs(char[][]grid, int i, int j){
-        if(i<0 || j<0 || i>=grid.length || j>=grid[i].length || grid[i][j] == '0')
+    private void markIslandVisited(char[][]grid, int i, int j){
+        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length || grid[i][j] == '0')
             return;
         
         grid[i][j] = '0';
-        dfs(grid, i+1, j);
-        dfs(grid, i-1, j);
-        dfs(grid, i, j+1);
-        dfs(grid, i, j-1);
+        
+        markIslandVisited(grid, i+1, j);
+        markIslandVisited(grid, i-1, j);
+        markIslandVisited(grid, i, j+1);
+        markIslandVisited(grid, i, j-1);
     }
 }
