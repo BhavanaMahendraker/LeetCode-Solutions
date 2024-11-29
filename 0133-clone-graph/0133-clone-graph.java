@@ -20,20 +20,26 @@ class Node {
 
 class Solution {
     public Node cloneGraph(Node node) {
-        return cloneHelper(node, new HashMap<>());
+        HashMap<Node, Node> mapNodes = new HashMap<>();
+        return dfsCloneGraph(node, mapNodes);
     }
     
-    public Node cloneHelper(Node node, HashMap<Node, Node> mapOldToNew){
+    private Node dfsCloneGraph(Node node, HashMap<Node, Node> mapNodes){
         if(node == null)
-            return node;
-        if(mapOldToNew.containsKey(node))
-            return mapOldToNew.get(node);
+            return null;
         
-        Node copyNode = new Node(node.val);
-        mapOldToNew.put(node, copyNode);
-        for(Node neigh: node.neighbors){
-            copyNode.neighbors.add(cloneHelper(neigh, mapOldToNew));
+        if(mapNodes.containsKey(node)){
+            return mapNodes.get(node);
         }
-        return copyNode;
+        
+        Node clone = new Node(node.val);
+        mapNodes.put(node, clone);
+        
+        for(Node neighbor: node.neighbors){
+            clone.neighbors.add(dfsCloneGraph(neighbor, mapNodes));
+        }
+        
+        return clone;
     }
+    
 }
