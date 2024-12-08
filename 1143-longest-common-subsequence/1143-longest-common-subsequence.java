@@ -2,13 +2,35 @@ class Solution {
     public int longestCommonSubsequence(String text1, String text2) {
         // return solveRec(text1, text2, 0, 0);
         
-        int[][]memo = new int[text1.length()][text2.length()];
-        for(int[] row: memo){
-            Arrays.fill(row, -1);
-        }
-        return solveMemo(text1, text2, 0, 0, memo);
+        // int[][]memo = new int[text1.length()][text2.length()];
+        // for(int[] row: memo){
+        //     Arrays.fill(row, -1);
+        // }
+        // return solveMemo(text1, text2, 0, 0, memo);
+        
+        return solveTab(text1, text2);
     }
     
+    // TC: O(text1Length + text2Length) This is my guess
+    // SC: O(text1Length + text2Length) This is my guess
+    public int solveTab(String text1, String text2){
+        int[][]dp = new int[text1.length() + 1][text2.length() + 1];
+                
+        for(int i=text1.length()-1; i>=0; i--){
+            for(int j=text2.length()-1; j>=0; j--){
+                if(text1.charAt(i) == text2.charAt(j)){
+                    dp[i][j] = 1 + dp[i+1][j+1];
+                } else{
+                    dp[i][j] = Math.max(dp[i+1][j], dp[i][j+1]);
+                }
+            }
+        }
+        
+        return dp[0][0];
+    }
+    
+    // TC: O(text1Length + text2Length) This is my guess
+    // SC: O(text1Length + text2Length) This is my guess
     public int solveMemo(String text1, String text2, int i, int j, int[][] memo){
         if(i >= text1.length() || j >= text2.length())
             return 0;
@@ -26,7 +48,7 @@ class Solution {
     }
     
     // TC: O(3^(text1Length + text2Length)) This is my guess
-    // SC: O(max(text1Length, text2Length)) This is my guess
+    // SC: O(text1Length + text2Length) This is my guess
     // Time Limit Exceeded
     public int solveRec(String text1, String text2, int i, int j){
         if(i >= text1.length() || j >= text2.length())
