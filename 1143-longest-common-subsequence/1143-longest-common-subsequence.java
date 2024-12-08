@@ -110,7 +110,7 @@ class Solution {
         return memo[i][j];
     }
     
-    // TC: O(3^(text1Length + text2Length)) This is my guess
+    // TC: O(2^(text1Length + text2Length)) This is my guess
     // SC: O(text1Length + text2Length) This is my guess
     // Time Limit Exceeded
     public int solveRec(String text1, String text2, int i, int j){
