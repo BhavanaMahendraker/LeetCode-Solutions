@@ -5,16 +5,6 @@ class Solution {
     
     
     public int longestPalindromeSubseq(String s) {
-        // return solveRec(text1, text2, 0, 0);
-        
-        // int[][]memo = new int[text1.length()][text2.length()];
-        // for(int[] row: memo){
-        //     Arrays.fill(row, -1);
-        // }
-        // return solveMemo(text1, text2, 0, 0, memo);
-        
-        // return solveTab(text1, text2);
-        // return solveTabSpaceOptimized(text1, text2);
         
         String reverseS = new StringBuilder(s).reverse().toString();
         
