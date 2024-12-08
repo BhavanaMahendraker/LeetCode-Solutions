@@ -9,7 +9,36 @@ class Solution {
         // return solveMemo(text1, text2, 0, 0, memo);
         
         // return solveTab(text1, text2);
-        return solveTabSpaceOptimized(text1, text2);
+        // return solveTabSpaceOptimized(text1, text2);
+        return solveTabFurtherOptimized(text1, text2);
+    }
+    
+    // Further Space Optimized (Look At This Once!)
+    // TC: O(text1Length * text2Length) This is my guess
+    // SC: O(text2Length) This is my guess
+    public int solveTabFurtherOptimized(String text1, String text2){
+        int[]next = new int[text2.length() + 1];
+                
+        for(int i=text1.length()-1; i>=0; i--){
+            // Define curr array inside loop so no need to re-initialize
+            int[]curr = new int[text2.length() + 1];
+            
+            for(int j=text2.length()-1; j>=0; j--){
+                int ans = 0;
+                if(text1.charAt(i) == text2.charAt(j)){
+                    ans = 1 + next[j+1];
+                } else{
+                    ans = Math.max(next[j], curr[j+1]);
+                }
+                curr[j] = ans;
+            }
+            
+            next = curr;
+            // No need to re-initialize
+            // curr = new int[text2.length() + 1];
+        }
+        
+        return next[0];
     }
     
     // Space Optimized
