@@ -15,8 +15,16 @@ class Solution {
     
     // Further Space Optimized (Look At This Once!)
     // TC: O(text1Length * text2Length) This is my guess
-    // SC: O(text2Length) This is my guess
+    // SC: O( min(text1Length, text2Length) ) This is my guess
     public int solveTabFurtherOptimized(String text1, String text2){
+        
+        // NOTE: minimize space by swapping text2 with text1
+        if(text2.length() > text1.length()){
+            String temp = text1;
+            text1 = text2;
+            text2 = temp;
+        }
+        
         int[]next = new int[text2.length() + 1];
                 
         for(int i=text1.length()-1; i>=0; i--){
