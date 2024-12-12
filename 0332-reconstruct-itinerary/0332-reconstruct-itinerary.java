@@ -1,21 +1,24 @@
 class Solution {
     public List<String> findItinerary(List<List<String>> tickets) {
         HashMap<String, PriorityQueue<String>> adjList = new HashMap<>();
-        List<String> res = new ArrayList<>();
+        ArrayList<String> res = new ArrayList<String>();
         
-        for(List<String> t : tickets){
-            adjList.putIfAbsent(t.get(0), new PriorityQueue<>());
-            adjList.get(t.get(0)).add(t.get(1));
+        for(List<String> ticket: tickets){
+            adjList.putIfAbsent(ticket.get(0), new PriorityQueue<>());
+            adjList.putIfAbsent(ticket.get(1), new PriorityQueue<>());
+            
+            adjList.get(ticket.get(0)).add(ticket.get(1));
         }
         
-        dfs("JFK", adjList, res);
-        
-        return res;        
+        dfs(adjList, "JFK", res);
+                
+        return res;
     }
     
-    public void dfs(String curr, HashMap<String, PriorityQueue<String>> adjList, List<String> res){
-        while(adjList.containsKey(curr) && !adjList.get(curr).isEmpty()){
-            dfs(adjList.get(curr).poll(), adjList, res);
+    private void dfs(HashMap<String, PriorityQueue<String>> adjList, String curr, ArrayList<String> res){
+        while(!adjList.get(curr).isEmpty()){
+            String next = adjList.get(curr).poll();
+            dfs(adjList, next, res);
         }
         res.add(0, curr);
     }
