@@ -20,6 +20,6 @@ class Solution {
             String next = adjList.get(curr).poll();
             dfs(adjList, next, res);
         }
-        res.add(0, curr);
+        res.add(0,curr);
     }
 }
