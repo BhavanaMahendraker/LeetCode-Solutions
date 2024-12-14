@@ -1,39 +1,47 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        HashMap<Integer, ArrayList<Integer>> adjlist = new HashMap<>();
         HashSet<Integer> visited = new HashSet<>();
+        HashSet<Integer> dfsVisited = new HashSet<>();
+        HashMap<Integer, ArrayList<Integer>> adjList = new HashMap<>();
         
-        for(int[] prereq : prerequisites){
-            adjlist.putIfAbsent(prereq[0], new ArrayList<>());
-            adjlist.get(prereq[0]).add(prereq[1]);
+        for(int[] pre: prerequisites){
+            adjList.putIfAbsent(pre[0], new ArrayList<>());
+            adjList.get(pre[0]).add(pre[1]);
         }
         
-        for(Integer key : adjlist.keySet()){
-            if(isCycle(key, adjlist, visited))
-                return false;
+        for(int i=0; i<numCourses; i++){
+            if(!visited.contains(i)){
+                if(isCycle(adjList, i, visited, dfsVisited)){
+                    return false;
+                }
+            }
         }
-        
         return true;
     }
     
-    public boolean isCycle(int key, HashMap<Integer, ArrayList<Integer>> adjlist, HashSet<Integer> visited){
-        if(visited.contains(key))
+    
+    private boolean isCycle(HashMap<Integer, ArrayList<Integer>> adjList, int curr, HashSet<Integer> visited, HashSet<Integer> dfsVisited){
+        if(dfsVisited.contains(curr)){
             return true;
-        
-        if(adjlist.get(key) == null)
-            return false;
-        
-        visited.add(key);
-        
-        for(int child : adjlist.get(key)){
-            if(isCycle(child, adjlist, visited)){
-                return true;
-            }
         }
         
-        visited.remove(key);
-        adjlist.put(key, new ArrayList<>()); // Removes repeated work
+        dfsVisited.add(curr);
         
-        return false;        
+        for(int neigh: adjList.getOrDefault(curr, new ArrayList<>())){
+            if(!visited.contains(neigh) && isCycle(adjList, neigh, visited, dfsVisited))
+                return true;
+        }
+        
+        dfsVisited.remove(curr);
+        visited.add(curr);
+
+        
+        return false;
     }
 }
+
+
+
+
+
+
