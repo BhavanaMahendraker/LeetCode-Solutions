@@ -20,6 +20,7 @@ class Solution {
         }
         
         int pos = numCourses-1;
+        // DETECT CYCLE
         int count =0;
         
         while(!q.isEmpty()){
@@ -31,10 +32,16 @@ class Solution {
                     q.add(neigh);
                 }
             }
-            count++;
             res[pos--] = curr;
+            // DETECT CYCLE
+            count++;
         }
         
-        return count == numCourses ? res : new int[]{};
+        // DETECT CYCLE
+        if(count != numCourses){
+            return new int[]{};
+        }
+        
+        return res;
     }
 }
