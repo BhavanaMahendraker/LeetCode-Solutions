@@ -1,62 +1,40 @@
 class Solution {
-    int WHITE = 1;
-    int GREY = 2;
-    int BLACK = 3;
-    boolean cycleDetected = false;
-    
     public int[] findOrder(int numCourses, int[][] prerequisites) {
+        // Topo sort Kahn's Algorithm
+        HashMap<Integer, ArrayList<Integer>> adjList = new HashMap<>();
+        int[] indegree = new int[numCourses];
         int[] res = new int[numCourses];
-        Stack<Integer> stack = new Stack<>();
-        HashMap<Integer, Integer> visitingPoint = new HashMap<>();
-        HashMap<Integer, ArrayList<Integer>> adjlist = new HashMap<>();
+        Queue<Integer> q = new LinkedList<>();
         
-        for(int i=0; i<numCourses; i++){
-            visitingPoint.put(i, WHITE);
-        }
-        
-        for(int[] prereq : prerequisites){
-            adjlist.putIfAbsent(prereq[1], new ArrayList<>());
-            adjlist.get(prereq[1]).add(prereq[0]);
+        for(int[] pre: prerequisites){
+            adjList.putIfAbsent(pre[0], new ArrayList<>());
+            adjList.putIfAbsent(pre[1], new ArrayList<>());
+
+            adjList.get(pre[0]).add(pre[1]);
+            indegree[pre[1]]++;
         }
         
         for(int i=0; i<numCourses; i++){
-            if(visitingPoint.get(i) == WHITE){
-                dfs(i, visitingPoint, adjlist, stack);
-                if(cycleDetected == true)
-                    break;
-            }
-        }
-        if(cycleDetected == true)
-            return new int[]{};
-        int i =0;
-        while(!stack.isEmpty()){
-            res[i++] = stack.pop();
+            if(indegree[i] == 0)
+                q.add(i);
         }
         
-        return res;
-    }
-    
-    public void dfs(int i, HashMap<Integer, Integer> visitingPoint, HashMap<Integer, ArrayList<Integer>> adjlist, Stack<Integer> stack){
-                
-        if(cycleDetected == true){
-            return;
-        }
+        int pos = numCourses-1;
+        int count =0;
         
-        visitingPoint.put(i, GREY);
-        
-        for(int child: adjlist.getOrDefault(i, new ArrayList<Integer>())){
-            if(visitingPoint.get(child) == BLACK){
-                continue;
-            }
-            if(visitingPoint.get(child) == GREY){
-                cycleDetected = true;
-            }
-            if(visitingPoint.get(child) == WHITE){
-                dfs(child, visitingPoint, adjlist, stack);
-            }
-        }
+        while(!q.isEmpty()){
+            int curr = q.poll();
             
-        visitingPoint.put(i, BLACK);
-        stack.push(i);
+            for(int neigh: adjList.getOrDefault(curr, new ArrayList<>())){
+                indegree[neigh]--;
+                if(indegree[neigh] == 0){
+                    q.add(neigh);
+                }
+            }
+            count++;
+            res[pos--] = curr;
+        }
+        
+        return count == numCourses ? res : new int[]{};
     }
 }
