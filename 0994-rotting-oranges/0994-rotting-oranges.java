@@ -25,16 +25,16 @@ class Solution {
             while(size-- > 0){
                 int curr[] = q.poll();
                 for(int[] dir: dirs){
-                    int i=curr[0]+dir[0];
-                    int j=curr[1]+dir[1];
+                    int x=curr[0]+dir[0];
+                    int y=curr[1]+dir[1];
                     
-                    if(i<0 || j<0 || i>=grid.length || j>=grid[0].length || grid[i][j] != 1){
+                    if(x<0 || y<0 || x>=grid.length || y>=grid[0].length || grid[x][y] != 1){
                         continue;
                     }
                     // Mark as visited !!!!!!!!
-                    grid[i][j] = 0;
+                    grid[x][y] = 0;
                     totalNumOfFreshOranges--;
-                    q.add(new int[]{i,j});
+                    q.add(new int[]{x,y});
                 }
             }
         }
