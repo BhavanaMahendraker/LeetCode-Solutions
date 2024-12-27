@@ -32,7 +32,7 @@ class Solution {
                         continue;
                     }
                     // Mark as visited !!!!!!!!
-                    grid[x][y] = 0;
+                    grid[x][y] = 2;
                     totalNumOfFreshOranges--;
                     q.add(new int[]{x,y});
                 }
