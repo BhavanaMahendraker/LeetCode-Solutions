@@ -6,7 +6,7 @@ class Solution:
         def dfs(start, comb, total):
 
             if total == target:
-                res.append(list(comb))
+                res.append(tuple(comb))
                 return
             
             if start > len(candidates) or total > target:
