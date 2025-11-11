@@ -9,12 +9,14 @@ class Solution:
                 res.append(tuple(comb))
                 return
             
-            if start > len(candidates) or total > target:
-                return
+            # if start > len(candidates) or total > target:
+            #     return
             
             for i in range(start, len(candidates)):
                 if i > start and candidates[i] == candidates[i-1]:
                     continue
+                if total + candidates[i] > target:
+                    break
                 comb.append(candidates[i])
                 dfs(i+1, comb, total + candidates[i])
                 comb.pop()
