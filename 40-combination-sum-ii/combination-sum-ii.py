@@ -6,10 +6,7 @@ class Solution:
             if total == target:
                 res.append(comb[:])
                 return
-            if i == len(candidates) or total > target:
-                return
-            
-            if total + candidates[i] > target:
+            if i == len(candidates) or total > target or total + candidates[i] > target:
                 return
             
             comb.append(candidates[i])
