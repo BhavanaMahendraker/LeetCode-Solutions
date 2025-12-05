@@ -7,10 +7,8 @@ class Solution {
     }
 
     private void dfs(List<List<String>> res, List<String> partitions, String s, int start) {
-        if (start >= s.length()) {
-            if(start == s.length()){
-                res.add(new ArrayList<>(partitions));
-            }
+        if (start == s.length()) {
+            res.add(new ArrayList<>(partitions));
             return;
         }
 
