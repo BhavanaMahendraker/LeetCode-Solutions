@@ -3,10 +3,18 @@ class NumMatrix {
     public NumMatrix(int[][] matrix) {
         prefixMatrix = new int[matrix.length+1][matrix[0].length+1];
 
+        // for(int i=1; i<prefixMatrix.length; i++){
+        //     for(int j=1; j<prefixMatrix[0].length; j++){
+        //         prefixMatrix[i][j] = prefixMatrix[i-1][j] + prefixMatrix[i][j-1] 
+        //                                 - prefixMatrix[i-1][j-1] + matrix[i-1][j-1];
+        //     }
+        // }
+
         for(int i=1; i<prefixMatrix.length; i++){
+            int rowPrefix = 0;
             for(int j=1; j<prefixMatrix[0].length; j++){
-                prefixMatrix[i][j] = prefixMatrix[i-1][j] + prefixMatrix[i][j-1] 
-                                        - prefixMatrix[i-1][j-1] + matrix[i-1][j-1];
+                rowPrefix += matrix[i-1][j-1];
+                prefixMatrix[i][j] = prefixMatrix[i-1][j] + rowPrefix;
             }
         }
     }
