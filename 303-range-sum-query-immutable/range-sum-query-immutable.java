@@ -3,9 +3,10 @@ class NumArray {
 
     public NumArray(int[] nums) {
         numsArr = new int[nums.length];
-        numsArr[0] = nums[0];
-        for(int i=1; i<nums.length; i++){
-            numsArr[i] = numsArr[i-1] + nums[i];
+        int sum = 0;
+        for(int i=0; i<nums.length; i++){
+            sum += nums[i];
+            numsArr[i] = sum;
         }
     }
     
