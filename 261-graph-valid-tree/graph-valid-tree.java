@@ -18,10 +18,10 @@ class Solution {
     }
 
     private int findParent(int[]parent, int node){
-        while(node != parent[node]){
-            node = parent[node];
+        if(node != parent[node]){
+            parent[node] = findParent(parent, parent[node]);
         }
-        return node;
+        return parent[node];
     }
 
     public boolean validTree(int n, int[][] edges) {
