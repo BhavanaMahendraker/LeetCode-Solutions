@@ -26,7 +26,6 @@ class Solution {
                 + Math.abs(points[currIndex][1] - points[neigh][1]);
 
                 minHeap.add(new int[]{neigh, dist});
-                minHeap.add(new int[]{currIndex, dist});
             }
         }
 
