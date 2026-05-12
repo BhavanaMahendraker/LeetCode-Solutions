@@ -6,7 +6,7 @@ class Solution {
         minHeap.add(new int[]{0,0});
         int total = 0;
         
-        while(!minHeap.isEmpty() || visited.size() != points.length){
+        while(!minHeap.isEmpty() && visited.size() != points.length){
             int[] curr = minHeap.poll();
             int nodeIndex = curr[0];
             int weight =  curr[1];
