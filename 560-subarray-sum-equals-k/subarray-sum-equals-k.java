@@ -7,10 +7,7 @@ class Solution {
         for(int num: nums){
             currSum += num;
             int complementSum = currSum - k;
-            if(prefixSumCount.containsKey(complementSum)){
-                res += prefixSumCount.get(complementSum);
-            }
-
+            res += prefixSumCount.getOrDefault(complementSum, 0);
             prefixSumCount.put(currSum, prefixSumCount.getOrDefault(currSum, 0) + 1);
         }
 
