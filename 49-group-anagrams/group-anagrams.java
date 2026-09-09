@@ -3,12 +3,12 @@ class Solution {
         HashMap<String, List<String>> anagramMap = new HashMap<>();
 
         for(String str: strs){
-            int[] alphabets = new int[26];
+            char[] alphabets = new char[26];
 
             for(char ch: str.toCharArray()){
                 alphabets[ch - 'a']++;
             }
-            String key = Arrays.toString(alphabets);
+            String key = new String(alphabets);
             anagramMap.putIfAbsent(key, new ArrayList<>());
             anagramMap.get(key).add(str);
         }
