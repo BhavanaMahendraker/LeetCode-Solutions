@@ -22,12 +22,10 @@ class Solution {
                 stack.push(ast);
             }
         }
-
-        int i = stack.size()-1;
+        
         int[] res = new int[stack.size()];
-
-        while(!stack.isEmpty()){
-            res[i--] = stack.pop();
+        for(int i=res.length-1; i >=0 ; i--){
+            res[i] = stack.pop();
         }
 
         return res;
