@@ -7,9 +7,7 @@ class Solution {
         for(int num: nums){
             currSum += num;
             int complementSum = currSum - k;
-            if(countPrefixSumMap.containsKey(complementSum)){
-                count += countPrefixSumMap.get(complementSum);
-            }
+            count += countPrefixSumMap.getOrDefault(complementSum, 0);
             countPrefixSumMap.put(currSum, countPrefixSumMap.getOrDefault(currSum, 0) + 1);
         }
 
