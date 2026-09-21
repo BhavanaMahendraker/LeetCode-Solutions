@@ -7,14 +7,14 @@ class Solution {
         int left = 0, right = x, res = 0;
 
         while(left <= right){
-            long mid = left + (right - left) / 2;
-            long curr = mid * mid;
+            int mid = left + (right - left) / 2;
+            long curr = (long)mid * mid;
 
             if(curr <= x){
-                res = (int)mid;
-                left = (int)mid + 1;
+                res = mid;
+                left = mid + 1;
             } else{
-                right = (int)mid - 1;
+                right = mid - 1;
             }
         }
 
