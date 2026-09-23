@@ -1,23 +1,38 @@
 class Solution {
     public List<String> findItinerary(List<List<String>> tickets) {
-        HashMap<String, PriorityQueue<String>> adjList = new HashMap<>();
+        HashMap<String, ArrayList<String>> adjList = new HashMap<>();
+        LinkedList<String> res = new LinkedList<>();
 
-        for(List<String> ticket : tickets){
-            adjList.putIfAbsent(ticket.get(0), new PriorityQueue<>());
+        for (List<String> ticket : tickets) {
+            adjList.putIfAbsent(ticket.get(0), new ArrayList<>());
+            adjList.putIfAbsent(ticket.get(1), new ArrayList<>());
+
             adjList.get(ticket.get(0)).add(ticket.get(1));
         }
 
-        ArrayList<String> res = new ArrayList<>();
-        dfs(adjList, res, "JFK");
+        // Sort destinations lexicographically
+        for (ArrayList<String> destinations : adjList.values()) {
+            Collections.sort(destinations);
+        }
+
+        dfs(adjList, "JFK", res);
 
         return res;
     }
 
-    private void dfs(HashMap<String, PriorityQueue<String>> adjList, ArrayList<String> res, String curr) {
-        while(adjList.containsKey(curr) && !adjList.get(curr).isEmpty()){
-            String val = adjList.get(curr).poll();
-            dfs(adjList, res, val);
+    private void dfs(
+            HashMap<String, ArrayList<String>> adjList,
+            String curr,
+            LinkedList<String> res) {
+        ArrayList<String> destinations = adjList.get(curr);
+
+        while (destinations != null && !destinations.isEmpty()) {
+            // Take the lexicographically smallest destination
+            String next = destinations.remove(0);
+            dfs(adjList, next, res);
         }
-        res.add(0, curr);
+
+        // Add AFTER using all outgoing edges
+        res.addFirst(curr);
     }
 }
