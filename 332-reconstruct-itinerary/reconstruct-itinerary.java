@@ -26,7 +26,7 @@ class Solution {
             LinkedList<String> res) {
         ArrayList<String> destinations = adjList.get(curr);
 
-        while (destinations != null && !destinations.isEmpty()) {
+        while (!destinations.isEmpty()) {
             // Last element is lexicographically smallest
             String next = destinations.remove(destinations.size() - 1);
             dfs(adjList, next, res);
