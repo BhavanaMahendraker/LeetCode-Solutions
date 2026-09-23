@@ -10,9 +10,9 @@ class Solution {
             adjList.get(ticket.get(0)).add(ticket.get(1));
         }
 
-        // Sort destinations lexicographically
+        // Sort in reverse order
         for (ArrayList<String> destinations : adjList.values()) {
-            Collections.sort(destinations);
+            Collections.sort(destinations, Collections.reverseOrder());
         }
 
         dfs(adjList, "JFK", res);
@@ -27,12 +27,11 @@ class Solution {
         ArrayList<String> destinations = adjList.get(curr);
 
         while (destinations != null && !destinations.isEmpty()) {
-            // Take the lexicographically smallest destination
-            String next = destinations.remove(0);
+            // Last element is lexicographically smallest
+            String next = destinations.remove(destinations.size() - 1);
             dfs(adjList, next, res);
         }
 
-        // Add AFTER using all outgoing edges
         res.addFirst(curr);
     }
 }
